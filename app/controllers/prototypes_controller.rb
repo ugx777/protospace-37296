@@ -34,6 +34,8 @@ class PrototypesController < ApplicationController
 
   def update
     @prototype = Prototype.find(params[:id])
+    @comment = Comment.new
+    @comments = @prototype.comments.includes(:user)
     @prototype.update(prototype_params)
     if @prototype.save
       render :show
